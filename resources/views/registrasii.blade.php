@@ -152,8 +152,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">NO Rawat</label>
-                                        <input type="text" name="no_rawat" id="rw" class="form-control"
-                                            placeholder="Masukkan nomor rawat">
+                                        <input readonly type="text" name="no_rawat" id="rw"
+                                            class="form-control" placeholder="Masukkan nomor rawat">
                                     </div>
                                     <div>
                                         <label for="">Poli tujuan</label>

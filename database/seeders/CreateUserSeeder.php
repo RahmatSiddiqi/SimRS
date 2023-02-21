@@ -27,7 +27,7 @@ class CreateUserSeeder extends Seeder
                 'name' => 'kelvin',
                 'email' => 'kelvin@gmail.com',
                 'is_admin' => '0',
-                'password' => bcrypt('12345678'),
+                'password' => bcrypt('cobamasuk'),
                 'kd_dokter' => 'D001',
             ],
             [

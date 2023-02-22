@@ -18,7 +18,9 @@ class PemeriksaanController extends Controller
             ->join('dokters', 'dokters.kd_dokter', '=', 'periksa_pasiens.kd_dokter')
             ->join('pasiens', 'pasiens.no_rm', '=', 'registrasi_pasiens.no_rm')
             ->join('polis', 'polis.id_poli', '=', 'registrasi_pasiens.id_poli_tujuan')
+            ->whereRaw('registrasi_pasiens.id_poli_tujuan = dokters.id_poli')
             ->get();
+        // dd($data);
         // $data = $request->session()->all();
         $user = User::all();
         $registrasi = Registrasi_pasien::all();

@@ -40,6 +40,26 @@ class CreatePasienSeeder extends Seeder
                 'nama_pasien' => 'acil',
                 'NIK' => '11080224045612',
             ],
+            [
+                'no_rm' => '1231',
+                'nama_pasien' => 'amat',
+                'NIK' => '1108022404562',
+            ],
+            [
+                'no_rm' => '12555',
+                'nama_pasien' => 'atlin',
+                'NIK' => '11080224045634',
+            ],
+            [
+                'no_rm' => '12344',
+                'nama_pasien' => 'ciluna',
+                'NIK' => '11080224047643',
+            ],
+            [
+                'no_rm' => '123422',
+                'nama_pasien' => 'anti',
+                'NIK' => '11080224045612',
+            ],
 
         ];
         foreach ($pasien as $key => $value) {

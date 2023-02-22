@@ -21,8 +21,9 @@ class RegistrasiController extends Controller
             ->where('nm_poli', 'LIKE', '%' . $keyword . '%')
             ->get();
 
-
-        return view('registrasi', ['data' => $data,]);
+        $pasien = Pasien::all();
+        $poli = Poli::all();
+        return view('registrasi', ['data' => $data, 'pasien' => $pasien, 'poli' => $poli]);
     }
 
     public function see()

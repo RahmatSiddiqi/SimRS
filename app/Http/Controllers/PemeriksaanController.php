@@ -8,25 +8,34 @@ use Illuminate\Http\Request;
 use App\Models\Periksa_pasien;
 use App\Models\Registrasi_pasien;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PemeriksaanController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
+        // dd($user->kd_dokter);
         $data = DB::table('periksa_pasiens')
             ->join('registrasi_pasiens', 'registrasi_pasiens.no_rawat', '=', 'periksa_pasiens.no_rawat')
             ->join('dokters', 'dokters.kd_dokter', '=', 'periksa_pasiens.kd_dokter')
             ->join('pasiens', 'pasiens.no_rm', '=', 'registrasi_pasiens.no_rm')
             ->join('polis', 'polis.id_poli', '=', 'registrasi_pasiens.id_poli_tujuan')
+            ->where('dokters.kd_dokter', 'LIKE', '%' . $user->kd_dokter . '%')
             ->whereRaw('registrasi_pasiens.id_poli_tujuan = dokters.id_poli')
             ->get();
         // dd($data);
         // $data = $request->session()->all();
-        $user = User::all();
-        $registrasi = Registrasi_pasien::all();
+
+        // $registrasi = Registrasi_pasien::all();
+        $registrasi_pasien = DB::table('registrasi_pasiens')
+            ->join('dokters', 'dokters.id_poli', '=', 'registrasi_pasiens.id_poli_tujuan')
+            ->where('dokters.kd_dokter', 'LIKE', '%' . $user->kd_dokter . '%')
+            ->whereRaw('registrasi_pasiens.id_poli_tujuan = dokters.id_poli')
+            ->get();
         $periksa_pasien = Periksa_pasien::get();
 
-        return view('pemeriksaan', ['periksa_pasien' => $periksa_pasien, 'registrasi_pasien' => $registrasi, 'user' => $user, 'data' => $data]);
+        return view('pemeriksaan', ['periksa_pasien' => $periksa_pasien, 'registrasi_pasien' => $registrasi_pasien, 'user' => $user, 'data' => $data]);
     }
 
     public function store(Request $request)

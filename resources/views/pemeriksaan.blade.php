@@ -80,7 +80,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div>
+                                    {{-- <div>
                                         <label for="">dokter</label>
                                         <select name="kd_dokter" id="" class="form-control inputbox">
                                             <option value="">--pilih dokter--</option>
@@ -88,6 +88,11 @@
                                                 <option value="{{ $item->kd_dokter }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>
+                                    </div> --}}
+                                    <div class="form-group">
+                                        <label for="">Kode Dokter</label>
+                                        <input type="text" name="kd_dokter" value="{{ $user->kd_dokter }}"
+                                            class="form-control" placeholder="Masukkan hasil diagnosa">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Hasil Diagnosa</label>

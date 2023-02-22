@@ -29,11 +29,11 @@
                 <div class="dropdown mb-2">
                     <p>Filter Registrasi Pasien :</p>
                     <form action="/registrasi-pasien" method="GET">
-                        <div class="col-sm-3">
-                            <label for="" class="form-label">Masukkan nama poli</label>
-                            <input name="keyword" type="text" class="form-control">
+                        <div class="col-sm-6 d-inline-flex">
+                            <input name="keyword" placeholder="Masukkan nama poli " type="text"
+                                class="form-control mx-1">
                             <br>
-                            <input type="submit" style="background-color: #00ADB5" value="Filter">
+                            <input type="submit" style="border-radius: 10%; background-color: #00ADB5" value="Filter">
                         </div>
                     </form>
                 </div>
@@ -97,7 +97,7 @@
                                         <label for="">Pasien</label>
                                         <select name="no_rm" id="" class="form-control inputbox">
                                             <option value="null">--pilih Pasien--</option>
-                                            @foreach ($data as $item)
+                                            @foreach ($pasien as $item)
                                                 <option value="{{ $item->no_rm }}">{{ $item->nama_pasien }}</option>
                                             @endforeach
                                         </select>
@@ -116,7 +116,7 @@
                                         <label for="">Poli tujuan</label>
                                         <select name="id_poli_tujuan" id="" class="form-control inputbox">
                                             <option value="null">--pilih Poli--</option>
-                                            @foreach ($data as $item)
+                                            @foreach ($poli as $item)
                                                 <option value="{{ $item->id_poli }}">{{ $item->nm_poli }}</option>
                                             @endforeach
                                         </select>

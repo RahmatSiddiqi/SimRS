@@ -21,7 +21,7 @@ class DokterController extends Controller
         $poli = Poli::all();
         $dokter = Dokter::get();
 
-        // dd($param_view);
+
         return view('dokter', ['data' => $data, 'poli' => $poli, 'user' => $user]);
     }
 
@@ -31,24 +31,17 @@ class DokterController extends Controller
             'kd_dokter' => 'required',
             'nm_dokter' => 'required',
             'id_poli' => 'required',
-            // 'name' => 'required',
-            // 'email' => 'required',
-            // 'password' => 'required',
+
         ]);
 
         $dokter = new Dokter();
         $dokter->kd_dokter = $request->input('kd_dokter');
         $dokter->nm_dokter = $request->input('nm_dokter');
         $dokter->id_poli = $request->input('id_poli');
-        // $user = new User();
-        // $user->name = $request->input('name');
-        // $user->email = $request->input('email');
-        // $password = bcrypt($request->input('password'));
-        // $user->password = $password;
-        // $user->kd_dokter = $request->input('kd_dokter');
+
 
         $dokter->save();
-        // $user->save();
+
         return redirect('/dokter');
     }
 
@@ -68,7 +61,7 @@ class DokterController extends Controller
         $user->password = $password;
         $user->kd_dokter = $request->input('kd_dokter');
         $user->save();
-        return redirect('/dokter');
+        return redirect('/dokter-lihatakun');
     }
 
     public function update(Request $request)
@@ -93,5 +86,18 @@ class DokterController extends Controller
         $dokter = Dokter::find($kd_dokter);
         $dokter->delete();
         return redirect('/dokter');
+    }
+
+    public function akun()
+    {
+        $user = User::all();
+        // dd($param_view);
+        return view('dokterakun', ['user' => $user]);
+    }
+    public function deleteakun($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/dokter-lihatakun');
     }
 }

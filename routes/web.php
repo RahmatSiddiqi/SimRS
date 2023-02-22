@@ -62,4 +62,6 @@ Route::group(['middleware' => 'is_admin'], function () {
     Route::post('/dokter-addAkun', [App\Http\Controllers\DokterController::class, 'storeakun'])->name('dokter-addAkun')->middleware('auth');
     Route::post('/dokter-edit', [App\Http\Controllers\DokterController::class, 'update'])->name('dokter-edit')->middleware('auth');
     Route::get('/dokter-delete/{kd_dokter}', [App\Http\Controllers\DokterController::class, 'delete'])->name('dokter-delete')->middleware('auth');
+    Route::get('/dokter-lihatakun', [App\Http\Controllers\DokterController::class, 'akun'])->name('dokter-akun')->middleware('auth');
+    Route::get('/dokter-deleteakun/{id}', [App\Http\Controllers\DokterController::class, 'deleteakun'])->name('dokter-deleteakun')->middleware('auth');
 });

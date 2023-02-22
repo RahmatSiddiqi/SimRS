@@ -88,7 +88,7 @@ class RegistrasiController extends Controller
     {
         $registrasi = Registrasi_pasien::find($no_rm);
         $registrasi->delete();
-        return redirect('/registrasi-pasiensee');
+        return redirect('/registrasi-pasien');
     }
 
     // public function cari(Request $request)

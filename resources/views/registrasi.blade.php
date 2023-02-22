@@ -13,14 +13,14 @@
                     </svg>
                     Tambah Registrasi</button>
 
-                <a href="/registrasi-pasiensee"><button type="button" class="btn btn-primary">
+                {{-- <a href="/registrasi-pasiensee"><button type="button" class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-person-plus-fill" viewBox="0 0 16 16">
                             <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                             <path fill-rule="evenodd"
                                 d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
                         </svg>
-                        Update Delete Registrasi</button></a>
+                        Update Delete Registrasi</button></a> --}}
             </div>
         </div>
         <div class="row justify-content-center">
@@ -47,6 +47,7 @@
                             <th scope="col">NIK</th>
                             <th scope="col">POLI</th>
                             <th scope="col">TANGGAL REGISTRASI</th>
+                            <th scope="col">AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,7 +60,7 @@
                                 <td>{{ $item->NIK }}</td>
                                 <td>{{ $item->nm_poli }}</td>
                                 <td>{{ $item->tgl_registrasi }}</td>
-                                {{-- <td><button type="button" class="btn btn-warning button-edit" data-bs-toggle="modal"
+                                <td><button type="button" class="btn btn-warning button-edit" data-bs-toggle="modal"
                                         data-bs-target="#editModal" data-rm="{{ $item->no_rm }}"
                                         data-registrasi="{{ $item->no_registrasi }}" data-rw="{{ $item->no_rawat }}"
                                         data-pl="{{ $item->id_poli_tujuan }}" data-tgl="{{ $item->tgl_registrasi }}">
@@ -75,7 +76,7 @@
                                                     d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z" />
                                             </svg>
                                         </button></a>
-                                </td> --}}
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -149,15 +150,10 @@
                             <form action="{{ route('registrasi-edit') }}" method="POST">
                                 @csrf
                                 <div class="modal-body">
-
-                                    <div>
+                                    <div class="form-group">
                                         <label for="">Pasien</label>
-                                        <select name="no_rm" id="pasien" class="form-control inputbox">
-                                            <option value="null">--pilih Pasien--</option>
-                                            @foreach ($data as $item)
-                                                <option value="{{ $item->no_rm }}">{{ $item->nama_pasien }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input readonly type="text" name="no_rm" id="pasien"
+                                            class="form-control" placeholder="Masukkan nomor rekam medik">
                                     </div>
                                     <div class="form-group">
                                         <label for="">NO Registrasi</label>
@@ -166,14 +162,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">NO Rawat</label>
-                                        <input type="text" name="no_rawat" id="rw" class="form-control"
-                                            placeholder="Masukkan nomor rawat">
+                                        <input readonly type="text" name="no_rawat" id="rw"
+                                            class="form-control" placeholder="Masukkan nomor rawat">
                                     </div>
                                     <div>
                                         <label for="">Poli tujuan</label>
                                         <select name="id_poli_tujuan" id="pl" class="form-control inputbox">
                                             <option value="null">--pilih Poli--</option>
-                                            @foreach ($data as $item)
+                                            @foreach ($poli as $item)
                                                 <option value="{{ $item->id_poli }}">{{ $item->nm_poli }}</option>
                                             @endforeach
                                         </select>
